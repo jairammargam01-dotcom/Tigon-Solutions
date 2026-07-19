@@ -4,7 +4,7 @@ import ProcessClient from "./ProcessClient";
 export const metadata: Metadata = {
   title: "Our Process | Tygon Solutions",
   description:
-    "Discover Tygon Solutions' transparent and agile software development process—from discovery and planning to deployment and long-term support.",
+    "Discover Tygon Solutions’ transparent and agile software development process—from discovery and planning to deployment and long-term support.",
   alternates: {
     canonical: "/process",
   },

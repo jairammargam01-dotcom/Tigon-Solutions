@@ -176,7 +176,7 @@ export default function DigitalTransformation() {
           </h3>
 
           <p className="mb-8 max-w-3xl text-lg leading-8 text-white/70">
-            Whether you're modernizing legacy software, migrating to the cloud,
+            Whether you’re modernizing legacy software, migrating to the cloud,
             implementing AI automation, or improving customer experience,{" "}
             <Link
               href="/"
@@ -268,7 +268,7 @@ export default function DigitalTransformation() {
       </p>
 
       <p>
-        If you're planning a new website or modernizing an existing platform,
+        If you’re planning a new website or modernizing an existing platform,
         you may also enjoy reading{" "}
         <Link
           href="/blog/react-vs-nextjs-business-websites"

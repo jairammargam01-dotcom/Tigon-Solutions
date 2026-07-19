@@ -30,7 +30,7 @@ export default function WhyChooseUs() {
             </h2>
 
             <p className="mb-8 text-lg leading-relaxed text-white/70">
-              We don't just write code or design interfaces. We deeply
+              We don’t just write code or design interfaces. We deeply
               understand your business objectives and engineer scalable
               solutions that drive measurable growth.
             </p>

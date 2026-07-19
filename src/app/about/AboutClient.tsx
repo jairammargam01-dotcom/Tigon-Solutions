@@ -26,7 +26,7 @@ export default function AboutClient() {
               transition={{ delay: 0.1 }}
               className="font-display mb-6 text-4xl leading-tight font-bold text-white md:text-6xl lg:text-7xl"
             >
-              We don't just build products.
+              We don’t just build products.
               <br />
               <span className="text-gradient">
                 We solve business problems.
@@ -86,7 +86,7 @@ export default function AboutClient() {
               </h2>
 
               <p className="text-lg leading-relaxed text-white/70">
-                To become the world's most trusted single-source partner for
+                To become the world’s most trusted single-source partner for
                 digital transformation, where any idea can be architected,
                 built, and scaled under one roof.
               </p>

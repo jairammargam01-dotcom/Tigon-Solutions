@@ -34,12 +34,12 @@ export default function ContactClient() {
       } else {
         const data = await response.json();
         if (Object.hasOwn(data, "errors")) {
-          setError(data.errors.map((err: any) => err.message).join(", "));
+          setError(data.errors.map((err: { message: string }) => err.message).join(", "));
         } else {
           setError("Oops! There was a problem submitting your form");
         }
       }
-    } catch (error) {
+    } catch {
       setError("Oops! There was a problem submitting your form");
     } finally {
       setIsSubmitting(false);
@@ -64,7 +64,7 @@ export default function ContactClient() {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-6xl font-display font-bold text-white mb-6"
             >
-              Let's Build Something <span className="text-gradient">Extraordinary</span>
+              Let’s Build Something <span className="text-gradient">Extraordinary</span>
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}

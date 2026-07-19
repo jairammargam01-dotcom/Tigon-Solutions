@@ -24,7 +24,7 @@ export default function PrivacyPage() {
 
       <div className="prose prose-invert prose-lg max-w-none text-white/70">
         <p>
-          Tygon Solutions ("we", "our", or "us") is committed to protecting
+          Tygon Solutions (referred to as “Company”, “we”, and “our”) is committed to protecting
           your privacy. This Privacy Policy explains how your personal
           information is collected, used, and disclosed.
         </p>

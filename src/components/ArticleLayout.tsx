@@ -426,7 +426,7 @@ export default function ArticleLayout({
               </h2>
 
               <p className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-white/70">
-                Whether you're planning an AI solution,
+                Whether you’re planning an AI solution,
                 business website, enterprise software,
                 mobile application, cloud platform, or
                 complete digital transformation, our team

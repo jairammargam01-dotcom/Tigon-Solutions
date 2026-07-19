@@ -240,7 +240,7 @@ export default function AiBusinessCosts() {
       </p>
 
       <p>
-        If you're evaluating the best technology stack for your next business
+        If you’re evaluating the best technology stack for your next business
         application, continue reading{" "}
         <Link
           href="/blog/react-vs-nextjs-business-websites"

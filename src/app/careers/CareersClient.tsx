@@ -41,7 +41,7 @@ export default function CareersClient() {
         </h1>
 
         <p className="mx-auto max-w-2xl text-lg text-white/70">
-          We are always looking for exceptional talent. Whether you're a
+          We are always looking for exceptional talent. Whether you’re a 
           seasoned engineer or a creative visionary, we provide the platform to
           build career-defining work.
         </p>

@@ -35,7 +35,7 @@ export default function CTA() {
             className="px-10 text-lg"
           >
             <Link href="/contact">
-              Let's Discuss Your Project
+              Let’s Discuss Your Project
             </Link>
           </Button>
         </motion.div>

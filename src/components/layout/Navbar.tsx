@@ -33,9 +33,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
 
   return (
     <>
@@ -145,6 +142,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
                   className="font-display text-3xl font-medium text-white/90 hover:text-white"
                 >
                   {link.name}
@@ -159,8 +157,11 @@ export default function Navbar() {
                 size="lg"
                 className="w-full max-w-xs text-lg"
               >
-                <Link href="/contact">
-                  Let's Talk
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Let’s Talk
                   <ChevronRight />
                 </Link>
               </Button>

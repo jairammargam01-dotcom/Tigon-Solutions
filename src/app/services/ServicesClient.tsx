@@ -337,9 +337,9 @@ export default function ServicesClient() {
 
             <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white/70">
               Every business has unique challenges. If your required service
-              isn't listed, simply tell us your idea. Through our trusted
+              isn’t listed, simply tell us your idea. Through our trusted
               network of developers, designers, engineers, AI specialists,
-              marketers, consultants, and recruiters, we'll assemble the right
+              marketers, consultants, and recruiters, we’ll assemble the right
               team to deliver a complete solution tailored to your needs.
             </p>
 

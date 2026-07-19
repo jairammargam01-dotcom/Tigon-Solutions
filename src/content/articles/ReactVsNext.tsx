@@ -6,14 +6,14 @@ export default function ReactVsNext() {
       <h2>Introduction</h2>
 
       <p>
-        React has become one of the world's most popular JavaScript libraries,
+        React has become one of the world’s most popular JavaScript libraries,
         powering millions of web applications. Next.js builds on React by
         adding features that simplify development while improving performance
         and search engine optimization.
       </p>
 
       <p>
-        Choosing between React and Next.js depends on your project's goals,
+        Choosing between React and Next.js depends on your project’s goals,
         expected traffic, SEO requirements, scalability, and long-term
         maintenance.
       </p>
@@ -107,7 +107,7 @@ export default function ReactVsNext() {
 
       <p>
         If your website depends heavily on organic search traffic, Next.js is
-        generally the stronger choice because of its SEO advantages. If you're
+        generally the stronger choice because of its SEO advantages. If you’re
         planning a new website or modernizing an existing one, explore our{" "}
         <Link
           href="/services"
@@ -120,7 +120,7 @@ export default function ReactVsNext() {
       </p>
 
       <p>
-        If you're building authenticated applications, admin dashboards, or
+        If you’re building authenticated applications, admin dashboards, or
         internal business platforms, React remains an excellent option.
       </p>
 
@@ -158,7 +158,7 @@ export default function ReactVsNext() {
           </h3>
 
           <p className="mb-8 max-w-3xl text-lg leading-8 text-white/70">
-            Whether you're building a corporate website, SaaS platform,
+            Whether you’re building a corporate website, SaaS platform,
             e-commerce store, or enterprise application,{" "}
             <Link
               href="/"
@@ -240,7 +240,7 @@ export default function ReactVsNext() {
       </p>
 
       <p>
-        If you're planning a modern business website, you may also enjoy
+        If you’re planning a modern business website, you may also enjoy
         reading our{" "}
         <Link
           href="/blog/digital-transformation-business-guide"
