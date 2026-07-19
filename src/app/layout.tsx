@@ -18,8 +18,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://tygon-solutions.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tygon-solutions.vercel.app"),
+  metadataBase: new URL(siteUrl),
 
   title: {
     default: "Tygon Solutions | One Partner. Unlimited Digital Solutions.",
@@ -27,15 +31,89 @@ export const metadata: Metadata = {
   },
 
   description:
-    "AI, Software Development, Web Development, Cloud, Mobile Apps, Digital Marketing and Business Consulting.",
+    "Tygon Solutions helps businesses build, automate, market, and scale through AI, software development, cloud, digital marketing, and expert technology services.",
 
   keywords: [
     "AI",
+    "Artificial Intelligence",
     "Software Development",
     "Web Development",
-    "Cloud",
+    "Mobile App Development",
+    "Cloud Computing",
     "Digital Marketing",
+    "Business Consulting",
+    "UI UX Design",
+    "Automation",
+    "Tygon Solutions",
   ],
+
+  applicationName: "Tygon Solutions",
+
+  authors: [
+    {
+      name: "Tygon Solutions",
+      url: siteUrl,
+    },
+  ],
+
+  creator: "Tygon Solutions",
+
+  publisher: "Tygon Solutions",
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  alternates: {
+    canonical: "/",
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Tygon Solutions",
+    title: "Tygon Solutions | One Partner. Unlimited Digital Solutions.",
+    description:
+      "Tygon Solutions helps businesses build, automate, market, and scale through AI, software development, cloud, digital marketing, and expert technology services.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Tygon Solutions",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Tygon Solutions | One Partner. Unlimited Digital Solutions.",
+    description:
+      "Tygon Solutions helps businesses build, automate, market, and scale through AI, software development, cloud, digital marketing, and expert technology services.",
+    images: ["/og-image.png"],
+  },
+
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+
+  manifest: "/manifest.webmanifest",
+
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -55,9 +133,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
 
-          <main className="flex-1">
-            {children}
-          </main>
+          <main className="flex-1">{children}</main>
 
           <Footer />
         </Providers>
