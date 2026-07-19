@@ -1,86 +1,90 @@
 import type { MetadataRoute } from "next";
 
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://tygon-solutions.vercel.app";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://tygon-solutions.vercel.app";
+  const lastModified = new Date();
 
   return [
     {
       url: baseUrl,
-      priority: 1,
+      lastModified,
       changeFrequency: "weekly",
-      lastModified: new Date(),
+      priority: 1,
     },
     {
       url: `${baseUrl}/about`,
-      priority: 0.9,
+      lastModified,
       changeFrequency: "monthly",
-      lastModified: new Date(),
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/services`,
-      priority: 0.9,
+      lastModified,
       changeFrequency: "weekly",
-      lastModified: new Date(),
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/process`,
-      priority: 0.8,
+      lastModified,
       changeFrequency: "monthly",
-      lastModified: new Date(),
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/portfolio`,
-      priority: 0.8,
+      lastModified,
       changeFrequency: "monthly",
-      lastModified: new Date(),
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/technologies`,
-      priority: 0.8,
+      lastModified,
       changeFrequency: "monthly",
-      lastModified: new Date(),
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/industries`,
-      priority: 0.8,
+      lastModified,
       changeFrequency: "monthly",
-      lastModified: new Date(),
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/careers`,
-      priority: 0.7,
+      lastModified,
       changeFrequency: "monthly",
-      lastModified: new Date(),
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/blog`,
-      priority: 0.9,
+      lastModified,
       changeFrequency: "weekly",
-      lastModified: new Date(),
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/contact`,
-      priority: 0.9,
+      lastModified,
       changeFrequency: "monthly",
-      lastModified: new Date(),
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/faq`,
-      priority: 0.7,
+      lastModified,
       changeFrequency: "monthly",
-      lastModified: new Date(),
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/privacy`,
-      priority: 0.3,
+      lastModified,
       changeFrequency: "yearly",
-      lastModified: new Date(),
+      priority: 0.3,
     },
     {
       url: `${baseUrl}/terms`,
-      priority: 0.3,
+      lastModified,
       changeFrequency: "yearly",
-      lastModified: new Date(),
+      priority: 0.3,
     },
   ];
 }
