@@ -1,14 +1,28 @@
 # Tygon Solutions
 
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![React](https://img.shields.io/badge/React-19-61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-06B6D4)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 <p align="center">
-  <img src="public/logo.png" alt="Tygon Solutions Logo" width="120">
+  <img src="public/logo.png" alt="Tygon Solutions Logo" width="180">
 </p>
 
-## One Partner. Unlimited Digital Solutions.
+# One Partner. Unlimited Digital Solutions.
 
-Tygon Solutions is a modern digital solutions company helping startups, SMEs, and enterprises build scalable software products and digital experiences.
+Tygon Solutions is a modern digital solutions company helping startups, SMEs, and enterprises build scalable software products, AI-powered solutions, and digital experiences.
 
-## Tech Stack
+---
+
+## 🌐 Live Website
+
+https://tygon-solutions.vercel.app
+
+---
+
+# 🚀 Tech Stack
 
 - Next.js 16
 - React 19
@@ -19,53 +33,60 @@ Tygon Solutions is a modern digital solutions company helping startups, SMEs, an
 
 ---
 
-## Features
+# ✨ Features
 
 - Responsive UI
 - SEO Optimized
 - Dynamic Blog
-- Robots & Sitemap
 - Open Graph
 - Twitter Cards
 - Structured Data
+- Robots.txt
+- Sitemap.xml
 - Fast Performance
 - Mobile Friendly
 
 ---
 
-## Services
+# 💼 Services
 
 - AI Automation
 - Software Development
 - Web Development
 - Mobile App Development
-- Cloud & DevOps
 - UI/UX Design
+- Cloud & DevOps
+- Cyber Security
 - Data Analytics
 - Digital Marketing
+- Business Consulting
 
 ---
 
-## Project Structure
+# 📂 Project Structure
 
 ```text
 src/
- ├── app/
- ├── components/
- ├── content/
- ├── lib/
+│
+├── app/
+├── components/
+├── content/
+├── lib/
+│
 public/
 ```
 
 ---
 
-## Installation
+# ⚙ Installation
+
+Install dependencies
 
 ```bash
 npm install
 ```
 
-Run locally
+Start development server
 
 ```bash
 npm run dev
@@ -79,12 +100,35 @@ npm run build
 
 ---
 
-## Live Website
+# 📈 SEO Features
 
-https://tygon-solutions.vercel.app
+- Dynamic Metadata
+- Robots.txt
+- Sitemap.xml
+- Canonical URLs
+- Open Graph
+- Twitter Cards
+- JSON-LD
+- Structured Data
 
 ---
 
-## License
+# 📷 Screenshots
 
-© 2026 Tygon Solutions
+(Add screenshots here later)
+
+---
+
+# 🤝 Contributing
+
+Pull requests are welcome.
+
+For major changes, please open an issue first.
+
+---
+
+# 📄 License
+
+MIT License
+
+Copyright © 2026 Tygon Solutions
