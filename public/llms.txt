@@ -1,0 +1,63 @@
+# Tygon Solutions
+
+> Tygon Solutions is a technology company that helps startups, SMEs, and enterprises build AI-powered software, modern websites, mobile applications, cloud infrastructure, automation solutions, and digital marketing strategies.
+
+Tygon Solutions delivers end-to-end digital transformation services, from strategy and consulting to design, development, deployment, and long-term support.
+
+## Website
+
+- https://tygon-solutions.vercel.app — Homepage and company overview.
+
+## Company
+
+- https://tygon-solutions.vercel.app/about — About Tygon Solutions.
+- https://tygon-solutions.vercel.app/process — Our software development process.
+- https://tygon-solutions.vercel.app/portfolio — Portfolio and previous work.
+- https://tygon-solutions.vercel.app/careers — Career opportunities.
+
+## Services
+
+- https://tygon-solutions.vercel.app/services — Complete list of services.
+- https://tygon-solutions.vercel.app/services#ai — AI & Automation.
+- https://tygon-solutions.vercel.app/services#software — Software Development.
+- https://tygon-solutions.vercel.app/services#web — Web Development.
+- https://tygon-solutions.vercel.app/services#mobile — Mobile App Development.
+- https://tygon-solutions.vercel.app/services#cloud — Cloud & DevOps.
+- https://tygon-solutions.vercel.app/services#marketing — Digital Marketing.
+- https://tygon-solutions.vercel.app/services#consulting — Technology Consulting.
+
+## Industries
+
+- https://tygon-solutions.vercel.app/industries — Industries we serve.
+
+## Technologies
+
+- https://tygon-solutions.vercel.app/technologies — Technology stack and platforms.
+
+## Resources
+
+- https://tygon-solutions.vercel.app/blog — Technical articles and business insights.
+- https://tygon-solutions.vercel.app/blog/how-ai-reduces-business-costs — AI business automation guide.
+- https://tygon-solutions.vercel.app/blog/react-vs-nextjs-business-websites — React vs Next.js comparison.
+- https://tygon-solutions.vercel.app/blog/digital-transformation-business-guide — Digital transformation guide.
+- https://tygon-solutions.vercel.app/faq — Frequently Asked Questions.
+
+## Contact
+
+- https://tygon-solutions.vercel.app/contact — Contact Tygon Solutions.
+- Email: tygonsolutions@gmail.com
+- LinkedIn: https://www.linkedin.com/in/tygon-solutions-07b780422
+- Instagram: https://www.instagram.com/tacito_voice_055
+
+## Legal
+
+- https://tygon-solutions.vercel.app/privacy — Privacy Policy.
+- https://tygon-solutions.vercel.app/terms — Terms & Conditions.
+
+## Sitemap
+
+- https://tygon-solutions.vercel.app/sitemap.xml
+
+## Robots
+
+- https://tygon-solutions.vercel.app/robots.txt

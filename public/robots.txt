@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tygon-solutions.vercel.app/sitemap.xml
