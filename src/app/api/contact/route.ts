@@ -1,112 +1,71 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { connectDB } from "@/lib/mongodb";
+import { Lead } from "@/models/Lead";
+import { inngest } from "@/inngest/client";
+import { contactSchema } from "@/lib/validation";
+
+import type { ContactFormData } from "@/types/contact";
 
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
 
-    const name = formData.get("name")?.toString() ?? "";
-    const company = formData.get("company")?.toString() ?? "";
-    const email = formData.get("email")?.toString() ?? "";
-    const phone = formData.get("phone")?.toString() ?? "";
-    const service = formData.get("service")?.toString() ?? "";
-    const budget = formData.get("budget")?.toString() ?? "";
-    const description = formData.get("description")?.toString() ?? "";
+    const data: ContactFormData = {
+      name: formData.get("name")?.toString() ?? "",
+      company: formData.get("company")?.toString() ?? "",
+      email: formData.get("email")?.toString() ?? "",
+      phone: formData.get("phone")?.toString() ?? "",
+      service: formData.get("service")?.toString() ?? "",
+      budget: formData.get("budget")?.toString() ?? "",
+      description: formData.get("description")?.toString() ?? "",
+    };
 
-    // Basic validation
-    if (!name || !email || !service || !description) {
+    console.log(data);
+
+    const validation = contactSchema.safeParse(data);
+
+    if (!validation.success) {
+      console.log(validation.error.flatten().fieldErrors);
+
       return NextResponse.json(
         {
           success: false,
-          message: "Please fill all required fields.",
+          message: "Validation failed.",
+          errors: validation.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        {
+          status: 400,
+        }
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
+    await connectDB();
+
+    const lead = await Lead.create({
+      ...validation.data,
+      status: "pending",
     });
 
-    await transporter.sendMail({
-      from: `"Tygon Solutions Website" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_EMAIL,
-      replyTo: email,
-      subject: `🚀 New Contact Form Submission - ${service}`,
-      html: `
-        <div style="font-family:Arial,sans-serif;padding:20px;">
-          <h2 style="color:#1056e9;">New Website Inquiry</h2>
-
-          <table cellpadding="8" cellspacing="0" border="1" style="border-collapse:collapse;width:100%;">
-            <tr>
-              <td><strong>Name</strong></td>
-              <td>${name}</td>
-            </tr>
-
-            <tr>
-              <td><strong>Company</strong></td>
-              <td>${company || "-"}</td>
-            </tr>
-
-            <tr>
-              <td><strong>Email</strong></td>
-              <td>${email}</td>
-            </tr>
-
-            <tr>
-              <td><strong>Phone</strong></td>
-              <td>${phone || "-"}</td>
-            </tr>
-
-            <tr>
-              <td><strong>Service</strong></td>
-              <td>${service}</td>
-            </tr>
-
-            <tr>
-              <td><strong>Budget</strong></td>
-              <td>${budget || "-"}</td>
-            </tr>
-
-            <tr>
-              <td><strong>Project Description</strong></td>
-              <td>${description}</td>
-            </tr>
-
-            <tr>
-              <td><strong>Submitted</strong></td>
-              <td>${new Date().toLocaleString("en-IN", {
-                dateStyle: "full",
-                timeStyle: "short",
-              })}</td>
-            </tr>
-          </table>
-
-          <br>
-
-          <p style="color:#666;">
-            This enquiry was submitted through the Tygon Solutions website.
-          </p>
-        </div>
-      `,
+    await inngest.send({
+      name: "contact/lead.created",
+      data: {
+        leadId: lead._id.toString(),
+      },
     });
 
     return NextResponse.json({
       success: true,
+      message: "Your enquiry has been submitted successfully.",
     });
+
   } catch (error) {
-    console.error(error);
+    console.error("Contact API Error:", error);
 
     return NextResponse.json(
       {
         success: false,
-        message: "Something went wrong.",
+        message:
+          "We're unable to process your request right now. Please try again later.",
       },
       {
         status: 500,
