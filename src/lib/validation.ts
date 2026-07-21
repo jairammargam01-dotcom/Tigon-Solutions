@@ -44,8 +44,8 @@ export const contactSchema = z.object({
     .string()
     .trim()
     .min(
-      20,
-      "Project description should contain at least 20 characters."
+      5,
+      "Project description should contain at least 5 characters."
     )
     .max(
       3000,

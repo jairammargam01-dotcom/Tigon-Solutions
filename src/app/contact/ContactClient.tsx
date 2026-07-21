@@ -32,11 +32,19 @@ export default function ContactClient() {
         setIsSuccess(true);
         form.reset();
       } else {
-        const data = await response.json();
-        if (Object.hasOwn(data, "errors")) {
-          setError(data.errors.map((err: { message: string }) => err.message).join(", "));
+        if (data.errors) {
+          const errors = data.errors as Record<string, string[]>;
+
+          const firstError =
+            Object.values(errors)
+              .flat()
+              .find((msg): msg is string => typeof msg === "string");
+
+          setError(firstError ?? "Please check the form and try again.");
+        } else if (data.message) {
+          setError(data.message);
         } else {
-          setError("Oops! There was a problem submitting your form");
+          setError("Oops! There was a problem submitting your form.");
         }
       }
     } catch {
@@ -192,20 +200,34 @@ export default function ContactClient() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="description" className="text-sm font-medium text-white/80">Project Description *</label>
+                  <label
+                    htmlFor="description"
+                    className="text-sm font-medium text-white/80"
+                  >
+                    Project Description *
+                  </label>
+
                   <textarea
                     id="description"
                     name="description"
                     required
                     rows={6}
+                    minLength={5}
+                    maxLength={3000}
                     className="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
-                    placeholder="Tell us about your goals, timeline, and any specific requirements..."
-                  ></textarea>
+                    placeholder="Describe your project, requirements, timeline, or goals..."
+                  />
+
+                  <p className="text-xs text-white/50">
+                    Minimum 5 characters • Maximum 3000 characters
+                  </p>
                 </div>
 
                 {error && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                    {error}
+                  <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3">
+                    <p className="text-sm font-medium text-red-400">
+                      {error}
+                    </p>
                   </div>
                 )}
 
