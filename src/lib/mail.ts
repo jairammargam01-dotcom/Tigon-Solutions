@@ -9,53 +9,62 @@ const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT),
   secure: true,
-
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
   },
 });
 
-/**
- * Verify SMTP connection.
- * Useful during development.
- */
 export async function verifyMailConnection() {
-  await transporter.verify();
+  console.log("========== SMTP VERIFY ==========");
+
+  try {
+    const result = await transporter.verify();
+
+    console.log("SMTP VERIFY SUCCESS");
+    console.log(result);
+  } catch (err) {
+    console.error("SMTP VERIFY FAILED");
+    console.error(err);
+
+    throw err;
+  }
 }
 
-/**
- * Send notification email to Tygon Solutions.
- */
 export async function sendAdminEmail(
   data: ContactFormData
 ): Promise<void> {
-  await transporter.sendMail({
+  console.log("========== SENDING ADMIN EMAIL ==========");
+
+  console.log({
+    smtpUser: process.env.SMTP_USER,
+    contactEmail: process.env.CONTACT_EMAIL,
+  });
+
+  const info = await transporter.sendMail({
     from: `"Tygon Solutions Website" <${process.env.SMTP_USER}>`,
-
     to: process.env.CONTACT_EMAIL,
-
     replyTo: data.email,
-
     subject: `🚀 New Project Enquiry • ${data.service}`,
-
     html: adminEmailTemplate(data),
   });
+
+  console.log("ADMIN EMAIL SENT");
+  console.log(info);
 }
 
-/**
- * Auto reply to customer.
- */
 export async function sendAutoReply(
   data: ContactFormData
 ): Promise<void> {
-  await transporter.sendMail({
+  console.log("========== SENDING AUTO REPLY ==========");
+
+  const info = await transporter.sendMail({
     from: `"Tygon Solutions" <${process.env.SMTP_USER}>`,
-
     to: data.email,
-
     subject: "We've received your enquiry | Tygon Solutions",
-
     html: autoReplyTemplate(data),
   });
+
+  console.log("AUTO REPLY SENT");
+  console.log(info);
 }

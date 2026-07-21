@@ -1,7 +1,12 @@
 import { inngest } from "@/inngest/client";
 
 import { connectDB } from "@/lib/mongodb";
-import { sendAdminEmail, sendAutoReply } from "@/lib/mail";
+import {
+  verifyMailConnection,
+  sendAdminEmail,
+  sendAutoReply,
+} from "@/lib/mail";
+
 import { Lead } from "@/models/Lead";
 
 export const contactLeadCreated = inngest.createFunction(
@@ -12,17 +17,26 @@ export const contactLeadCreated = inngest.createFunction(
     },
   },
   async ({ event }) => {
+    console.log("========== INNGEST FUNCTION START ==========");
+
     await connectDB();
 
     const { leadId } = event.data as {
       leadId: string;
     };
 
+    console.log("Lead ID:", leadId);
+
     const lead = await Lead.findById(leadId);
 
     if (!lead) {
       throw new Error("Lead not found.");
     }
+
+    console.log("Lead Found:");
+    console.log(lead);
+
+    await verifyMailConnection();
 
     try {
       await Promise.all([
@@ -32,7 +46,10 @@ export const contactLeadCreated = inngest.createFunction(
 
       lead.status = "emailed";
       lead.emailedAt = new Date();
+
+      console.log("Emails sent successfully.");
     } catch (err) {
+      console.error("EMAIL ERROR");
       console.error(err);
 
       lead.status = "failed";
@@ -40,6 +57,10 @@ export const contactLeadCreated = inngest.createFunction(
 
     await lead.save();
 
-    return { success: true };
+    console.log("Lead updated.");
+
+    return {
+      success: true,
+    };
   }
 );
