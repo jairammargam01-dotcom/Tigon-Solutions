@@ -7,28 +7,10 @@ import { Button } from "@/components/ui/button";
 
 const positions = [
   {
-    title: "Senior Full Stack Engineer",
+    title: "Motion Graphics Designer & Video Editor",
     type: "Full-time",
     location: "Remote",
-    department: "Engineering",
-  },
-  {
-    title: "AI/ML Solutions Architect",
-    type: "Full-time",
-    location: "Remote",
-    department: "Artificial Intelligence",
-  },
-  {
-    title: "Lead Product Designer",
-    type: "Full-time",
-    location: "Remote",
-    department: "Design",
-  },
-  {
-    title: "Enterprise Account Executive",
-    type: "Full-time",
-    location: "Remote",
-    department: "Sales",
+    department: "Tygon Studios",
   },
 ];
 
@@ -37,13 +19,17 @@ export default function CareersClient() {
     <section className="container mx-auto max-w-5xl px-4 pt-40 pb-20">
       <div className="mb-16 text-center">
         <h1 className="font-display mb-6 text-4xl font-bold text-white md:text-6xl">
-          Join The <span className="text-gradient">Network</span>
+          Join <span className="text-gradient">Tygon Solutions</span>
         </h1>
 
         <p className="mx-auto max-w-2xl text-lg text-white/70">
-          We are always looking for exceptional talent. Whether you’re a 
-          seasoned engineer or a creative visionary, we provide the platform to
-          build career-defining work.
+          We’re hiring a creative{" "}
+          <strong>Motion Graphics Designer &amp; Video Editor</strong> to join
+          <strong> Tygon Studios</strong>, our creative division. You’ll create
+          engaging motion graphics, advertisements, YouTube videos, social media
+          reels, animations, and branded visual content for clients across
+          multiple industries. If you’re passionate about storytelling through
+          design and video, we’d love to hear from you.
         </p>
       </div>
 
@@ -74,7 +60,13 @@ export default function CareersClient() {
             </div>
 
             <Button asChild variant="outline" className="shrink-0">
-              <Link href="/contact">Apply Now</Link>
+              <Link
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeaKztvzQSHEsRFeHMGky4nSET248Ifs4E-zL_YLuOdYTEFWg/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Apply Now
+              </Link>
             </Button>
           </motion.div>
         ))}

@@ -20,7 +20,7 @@ export async function connectDB() {
   const MONGODB_URI = process.env.MONGODB_URI;
 
   if (!MONGODB_URI) {
-    throw new Error("Please define MONGODB_URI in .env.local");
+    throw new Error("Missing MONGODB_URI environment variable.");
   }
 
   if (cached.conn) {
