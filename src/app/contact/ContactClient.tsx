@@ -32,6 +32,8 @@ export default function ContactClient() {
         setIsSuccess(true);
         form.reset();
       } else {
+        const data = await response.json();
+
         if (data.errors) {
           const errors = data.errors as Record<string, string[]>;
 
@@ -47,13 +49,6 @@ export default function ContactClient() {
           setError("Oops! There was a problem submitting your form.");
         }
       }
-    } catch {
-      setError("Oops! There was a problem submitting your form");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <>
     
