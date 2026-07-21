@@ -15,7 +15,26 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function verifyMailConnection() {
+export async function verifyMailConnection(): Promise<void> {
+  console.log("========== SMTP ENV ==========");
+
+  console.log({
+    SMTP_HOST: process.env.SMTP_HOST,
+    SMTP_PORT: process.env.SMTP_PORT,
+    SMTP_USER: process.env.SMTP_USER,
+    CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+    HAS_PASSWORD: !!process.env.SMTP_PASS,
+    PASSWORD_LENGTH: process.env.SMTP_PASS?.length ?? 0,
+  });
+
+  console.log("========== TRANSPORT CONFIG ==========");
+
+  console.log({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
+    secure: true,
+  });
+
   console.log("========== SMTP VERIFY ==========");
 
   try {
@@ -37,8 +56,9 @@ export async function sendAdminEmail(
   console.log("========== SENDING ADMIN EMAIL ==========");
 
   console.log({
-    smtpUser: process.env.SMTP_USER,
-    contactEmail: process.env.CONTACT_EMAIL,
+    from: process.env.SMTP_USER,
+    to: process.env.CONTACT_EMAIL,
+    replyTo: data.email,
   });
 
   const info = await transporter.sendMail({
@@ -57,6 +77,11 @@ export async function sendAutoReply(
   data: ContactFormData
 ): Promise<void> {
   console.log("========== SENDING AUTO REPLY ==========");
+
+  console.log({
+    from: process.env.SMTP_USER,
+    to: data.email,
+  });
 
   const info = await transporter.sendMail({
     from: `"Tygon Solutions" <${process.env.SMTP_USER}>`,
