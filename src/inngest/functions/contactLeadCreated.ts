@@ -12,9 +12,9 @@ import { Lead } from "@/models/Lead";
 export const contactLeadCreated = inngest.createFunction(
   {
     id: "contact-lead-created",
-    trigger: {
-      event: "contact/lead.created",
-    },
+  },
+  {
+    event: "contact/lead.created",
   },
   async ({ event }) => {
     console.log("========== INNGEST FUNCTION START ==========");
