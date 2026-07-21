@@ -13,6 +13,7 @@ export default function ContactClient() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     setIsSubmitting(true);
     setError("");
 
@@ -31,24 +32,34 @@ export default function ContactClient() {
       if (response.ok) {
         setIsSuccess(true);
         form.reset();
-      } else {
-        const data = await response.json();
-
-        if (data.errors) {
-          const errors = data.errors as Record<string, string[]>;
-
-          const firstError =
-            Object.values(errors)
-              .flat()
-              .find((msg): msg is string => typeof msg === "string");
-
-          setError(firstError ?? "Please check the form and try again.");
-        } else if (data.message) {
-          setError(data.message);
-        } else {
-          setError("Oops! There was a problem submitting your form.");
-        }
+        return;
       }
+
+      const data = await response.json();
+
+      if (data.errors) {
+        const errors = data.errors as Record<string, string[]>;
+
+        const firstError =
+          Object.values(errors)
+            .flat()
+            .find((msg): msg is string => typeof msg === "string");
+
+        setError(firstError ?? "Please check the form and try again.");
+      } else if (data.message) {
+        setError(data.message);
+      } else {
+        setError("Oops! There was a problem submitting your form.");
+      }
+    } catch (err) {
+      console.error(err);
+
+      setError("Oops! There was a problem submitting your form.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
   return (
     <>
     
