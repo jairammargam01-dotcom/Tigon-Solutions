@@ -12,10 +12,14 @@ import { Lead } from "@/models/Lead";
 export const contactLeadCreated = inngest.createFunction(
   {
     id: "contact-lead-created",
+
+    triggers: [
+      {
+        event: "contact/lead.created",
+      },
+    ],
   },
-  {
-    event: "contact/lead.created",
-  },
+
   async ({ event }) => {
     console.log("========== INNGEST FUNCTION START ==========");
 
@@ -33,8 +37,7 @@ export const contactLeadCreated = inngest.createFunction(
       throw new Error("Lead not found.");
     }
 
-    console.log("Lead Found:");
-    console.log(lead);
+    console.log("Lead Found:", lead);
 
     await verifyMailConnection();
 
