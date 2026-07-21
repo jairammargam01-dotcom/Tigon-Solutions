@@ -2,20 +2,15 @@ import { inngest } from "@/inngest/client";
 
 import { connectDB } from "@/lib/mongodb";
 import { sendAdminEmail, sendAutoReply } from "@/lib/mail";
-
 import { Lead } from "@/models/Lead";
 
 export const contactLeadCreated = inngest.createFunction(
   {
     id: "contact-lead-created",
-
-    triggers: [
-      {
-        event: "contact/lead.created",
-      },
-    ],
+    trigger: {
+      event: "contact/lead.created",
+    },
   },
-
   async ({ event }) => {
     await connectDB();
 
@@ -45,8 +40,6 @@ export const contactLeadCreated = inngest.createFunction(
 
     await lead.save();
 
-    return {
-      success: true,
-    };
+    return { success: true };
   }
 );
