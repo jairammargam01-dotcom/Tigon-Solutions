@@ -113,9 +113,6 @@ npm run build
 
 ---
 
-# 📷 Screenshots
-
-(Add screenshots here later)
 
 ---
 
