@@ -1,90 +1,101 @@
 import type { MetadataRoute } from "next";
 
+import { blogPosts } from "@/content/blogPosts";
+
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   "https://tygon-solutions.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const now = new Date();
 
-  return [
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified,
+      lastModified: now,
       changeFrequency: "weekly",
-      priority: 1,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/services`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/process`,
-      lastModified,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/portfolio`,
-      lastModified,
+      url: `${baseUrl}/services`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/industries`,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/technologies`,
-      lastModified,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/industries`,
-      lastModified,
+      url: `${baseUrl}/portfolio`,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/careers`,
-      lastModified,
+      url: `${baseUrl}/process`,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified,
+      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/contact`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified,
+      url: `${baseUrl}/careers`,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/contact`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/faq`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/privacy`,
-      lastModified,
+      lastModified: now,
       changeFrequency: "yearly",
-      priority: 0.3,
+      priority: 0.2,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified,
+      lastModified: now,
       changeFrequency: "yearly",
-      priority: 0.3,
+      priority: 0.2,
     },
   ];
+
+  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...blogPages];
 }

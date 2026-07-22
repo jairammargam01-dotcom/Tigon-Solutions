@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
 
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
 import { Providers } from "@/components/Providers";
 import ScrollToHash from "@/components/ScrollToHash";
 
@@ -31,20 +31,31 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Tygon Solutions helps businesses build, automate, market, and scale through AI, software development, cloud, digital marketing, and expert technology services.",
+    "Tygon Solutions helps businesses build, automate, market, and scale through AI solutions, custom software development, cloud services, cybersecurity, digital marketing, branding, and technology consulting.",
 
   keywords: [
-    "AI",
+    "Tygon Solutions",
+    "Technology Company",
+    "Software Development Company",
+    "AI Solutions",
     "Artificial Intelligence",
-    "Software Development",
+    "Custom Software Development",
     "Web Development",
     "Mobile App Development",
-    "Cloud Computing",
+    "Cloud Services",
+    "DevOps",
+    "Cybersecurity",
     "Digital Marketing",
+    "SEO Services",
     "Business Consulting",
-    "UI UX Design",
-    "Automation",
-    "Tygon Solutions",
+    "Technology Consulting",
+    "Digital Transformation",
+    "Business Automation",
+    "Enterprise Software",
+    "Technology Partner",
+    "Software Company India",
+    "Soical Media Marketing",
+    "Social Media Management",
   ],
 
   applicationName: "Tygon Solutions",
@@ -83,7 +94,7 @@ export const metadata: Metadata = {
     siteName: "Tygon Solutions",
     title: "Tygon Solutions | One Partner. Unlimited Digital Solutions.",
     description:
-      "Tygon Solutions helps businesses build, automate, market, and scale through AI, software development, cloud, digital marketing, and expert technology services.",
+      "Helping businesses build, automate, market, and scale through AI, software engineering, cloud, digital marketing, and innovative technology solutions.",
     images: [
       {
         url: "/og-image.png",
@@ -98,15 +109,25 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tygon Solutions | One Partner. Unlimited Digital Solutions.",
     description:
-      "Tygon Solutions helps businesses build, automate, market, and scale through AI, software development, cloud, digital marketing, and expert technology services.",
+      "Helping businesses build, automate, market, and scale through AI, software engineering, cloud, digital marketing, and innovative technology solutions.",
     images: ["/og-image.png"],
   },
 
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      {
+        url: "/favicon.ico",
+      },
+      {
+        url: "/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
     ],
     apple: "/apple-touch-icon.png",
   },

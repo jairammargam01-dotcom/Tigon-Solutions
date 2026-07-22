@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://tygon-solutions.vercel.app"),
 
   title:
-    "Remote Motion Graphics Designer & Video Editor Jobs | Full-Time | Tygon Solutions",
+    "Remote Motion Graphics Designer & Video Editor Jobs | Full-Time",
 
   description:
     "Tygon Solutions is hiring a full-time remote Motion Graphics Designer & Video Editor. Create engaging motion graphics, advertisements, YouTube videos, social media reels, animations, and branded visual content. Apply today.",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     title:
-      "Remote Motion Graphics Designer & Video Editor | Careers | Tygon Solutions",
+      "Remote Motion Graphics Designer & Video Editor | Careers ",
 
     description:
       "We're hiring a full-time remote Motion Graphics Designer & Video Editor. Join Tygon Solutions and work on exciting motion graphics, advertisements, YouTube videos, animations, and social media content.",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
 
     title:
-      "Remote Motion Graphics Designer & Video Editor | Tygon Solutions",
+      "Remote Motion Graphics Designer & Video Editor ",
 
     description:
       "Apply for our full-time remote Motion Graphics Designer & Video Editor position and become part of the Tygon Solutions creative team.",

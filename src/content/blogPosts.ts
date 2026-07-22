@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Discover how Artificial Intelligence is helping businesses reduce operational costs, automate repetitive work, and improve productivity.",
     category: "Artificial Intelligence",
-    date: "July 15, 2026",
+    date: "2026-07-15",
     readTime: "8 min read",
     image: "/blog/ai-business-costs.webp",
     featured: true,
@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Compare React and Next.js for SEO, performance, scalability, and developer experience to determine which technology fits your business.",
     category: "Web Development",
-    date: "July 15, 2026",
+    date: "2026-07-15",
     readTime: "9 min read",
     image: "/blog/react-vs-next.webp",
     component: "ReactVsNext",
@@ -44,7 +44,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Learn how digital transformation helps companies improve efficiency, customer experience, automation, and long-term business growth.",
     category: "Digital Strategy",
-    date: "July 15, 2026",
+    date: "2026-07-15",
     readTime: "10 min read",
     image: "/blog/digital-transformation.webp",
     component: "DigitalTransformation",
