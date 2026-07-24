@@ -1,16 +1,19 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://tygon-solutions.vercel.app";
-
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://tygon-solutions.vercel.app";
+
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: [
+          "/api/",
+          "/admin/",
+        ],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

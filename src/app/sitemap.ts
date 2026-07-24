@@ -1,12 +1,20 @@
 import type { MetadataRoute } from "next";
 
-import { blogPosts } from "@/content/blogPosts";
+import { connectDB } from "@/lib/mongodb";
+import Blog from "@/models/Blog";
+import type { BlogDocument } from "@/models/Blog";
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://tygon-solutions.vercel.app";
+type BlogWithId = BlogDocument & {
+  updatedAt: Date;
+};
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  await connectDB();
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://tygon-solutions.vercel.app";
+
   const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -55,13 +63,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/blog`,
       lastModified: now,
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/careers`,
       lastModified: now,
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 0.7,
     },
     {
@@ -90,10 +98,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "monthly",
+  const blogs = await Blog.find({
+    published: true,
+  })
+    .select("slug updatedAt")
+    .lean();
+
+  const blogPages: MetadataRoute.Sitemap = blogs.map((blog: BlogWithId) => ({
+    url: `${baseUrl}/blog/${blog.slug}`,
+    lastModified: blog.updatedAt,
+    changeFrequency: "weekly",
     priority: 0.8,
   }));
 

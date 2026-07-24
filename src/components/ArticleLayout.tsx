@@ -12,10 +12,13 @@ import {
   Link as LinkIcon,
 } from "lucide-react";
 
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 import BlogCard from "@/components/BlogCard";
-import { blogPosts } from "@/content/blogPosts";
+import type { Blog } from "@/types/blog";
 
 interface FAQItem {
   question: string;
@@ -23,26 +26,18 @@ interface FAQItem {
 }
 
 interface ArticleLayoutProps {
-  slug: string;
-  title: string;
-  description: string;
-  category: string;
-  date: string;
-  readTime: string;
-  image: string;
-  children: React.ReactNode;
+  blog: Blog;
+  relatedBlogs: Blog[];
+  previousBlog?: Blog | null;
+  nextBlog?: Blog | null;
   faq?: FAQItem[];
 }
 
 export default function ArticleLayout({
-  slug,
-  title,
-  description,
-  category,
-  date,
-  readTime,
-  image,
-  children,
+  blog,
+  relatedBlogs,
+  previousBlog,
+  nextBlog,
   faq = [],
 }: ArticleLayoutProps) {
   const [progress, setProgress] = useState(0);
@@ -66,32 +61,24 @@ export default function ArticleLayout({
 
     window.addEventListener("scroll", handleScroll);
 
-    return () =>
+    return () => {
       window.removeEventListener(
         "scroll",
         handleScroll
       );
+    };
   }, []);
 
-  const currentIndex = blogPosts.findIndex(
-    (post) => post.slug === slug
-  );
+  const formattedDate = new Intl.DateTimeFormat(
+    "en-IN",
+    {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }
+  ).format(new Date(blog.createdAt));
 
-  const previousArticle =
-    currentIndex > 0
-      ? blogPosts[currentIndex - 1]
-      : null;
-
-  const nextArticle =
-    currentIndex < blogPosts.length - 1
-      ? blogPosts[currentIndex + 1]
-      : null;
-
-  const relatedPosts = blogPosts
-    .filter((post) => post.slug !== slug)
-    .slice(0, 3);
-
-  const articleUrl = `https://tygon-solutions.vercel.app/blog/${slug}`;
+  const articleUrl = `https://tygon-solutions.vercel.app/blog/${blog.slug}`;
 
   const shareLinkedIn =
     `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
@@ -116,7 +103,7 @@ export default function ArticleLayout({
     <>
       {/* Reading Progress */}
 
-      <div className="fixed top-0 left-0 z-[999] h-1 w-full bg-white/5">
+      <div className="fixed left-0 top-0 z-[999] h-1 w-full bg-white/5">
         <div
           className="h-full bg-primary transition-all duration-150"
           style={{
@@ -125,13 +112,12 @@ export default function ArticleLayout({
         />
       </div>
 
-      <section className="pt-40 pb-24">
+      <section className="pb-24 pt-40">
         <div className="container mx-auto max-w-6xl px-4">
 
           {/* Breadcrumb */}
 
           <nav className="mb-8 flex flex-wrap items-center gap-2 text-sm text-white/50">
-
             <Link
               href="/"
               className="hover:text-primary"
@@ -151,9 +137,8 @@ export default function ArticleLayout({
             <span>/</span>
 
             <span className="text-white">
-              {title}
+              {blog.title}
             </span>
-
           </nav>
 
           {/* Back */}
@@ -169,45 +154,42 @@ export default function ArticleLayout({
           {/* Category */}
 
           <span className="mb-6 inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-            {category}
+            {blog.category}
           </span>
 
           {/* Title */}
 
-          <h1 className="mb-6 text-5xl font-display font-bold leading-tight text-white lg:text-6xl">
-            {title}
+          <h1 className="mb-6 font-display text-5xl font-bold leading-tight text-white lg:text-6xl">
+            {blog.title}
           </h1>
 
           {/* Description */}
 
           <p className="mb-10 max-w-4xl text-xl leading-relaxed text-white/60">
-            {description}
+            {blog.excerpt}
           </p>
 
           {/* Meta */}
 
           <div className="mb-10 flex flex-wrap items-center gap-8 text-sm text-white/50">
-
             <div className="flex items-center gap-2">
               <CalendarDays className="h-4 w-4" />
-              {date}
+              {formattedDate}
             </div>
 
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
-              {readTime}
+              {blog.readTime}
             </div>
 
             <div>
               Tygon Solutions Editorial Team
             </div>
-
           </div>
 
-          {/* Share Buttons */}
+          {/* Share */}
 
           <div className="mb-12 flex flex-wrap gap-3">
-
             <button
               onClick={copyLink}
               className="glass-card flex items-center gap-2 rounded-xl px-4 py-2 hover:bg-white/10"
@@ -235,24 +217,27 @@ export default function ArticleLayout({
               <FaFacebookF className="h-4 w-4" />
               Facebook
             </a>
-
           </div>
 
-          {/* Hero Image */}
+          {/* Hero */}
 
           <Image
-            src={image}
-            alt={title}
+            src={
+              blog.coverImage && blog.coverImage.trim() !== ""
+                ? blog.coverImage
+                : "/images/blog-placeholder.jpg"
+            }
+            alt={blog.title}
             width={1400}
             height={800}
             priority
+            sizes="100vw"
             className="mb-16 h-[450px] w-full rounded-3xl object-cover"
           />
 
           {/* Author */}
 
           <div className="glass-card mb-16 rounded-3xl p-8">
-
             <h3 className="mb-3 text-2xl font-bold text-white">
               About the Author
             </h3>
@@ -266,7 +251,6 @@ export default function ArticleLayout({
               Every article is reviewed by experienced
               technology professionals before publication.
             </p>
-
           </div>
 
           {/* Article */}
@@ -278,39 +262,32 @@ export default function ArticleLayout({
               prose-lg
               lg:prose-xl
               max-w-none
-
               prose-headings:font-display
               prose-headings:text-white
               prose-headings:font-bold
-
               prose-h2:mt-14
               prose-h2:mb-6
               prose-h2:border-b
               prose-h2:border-white/10
               prose-h2:pb-3
-
               prose-p:text-white/80
               prose-p:leading-8
-
               prose-a:text-primary
               prose-a:no-underline
-
               prose-strong:text-white
-
               prose-li:text-white/80
-
               prose-img:rounded-2xl
               prose-img:shadow-xl
             "
-          >
-            {children}
-          </article>
-
+            dangerouslySetInnerHTML={{
+              __html: blog.content,
+            }}
+          />
                     {/* FAQ */}
 
           {faq.length > 0 && (
             <section className="mt-24">
-              <h2 className="mb-10 text-4xl font-display font-bold text-white">
+              <h2 className="mb-10 font-display text-4xl font-bold text-white">
                 Frequently Asked Questions
               </h2>
 
@@ -360,13 +337,13 @@ export default function ArticleLayout({
 
           {/* Previous / Next */}
 
-          {(previousArticle || nextArticle) && (
+          {(previousBlog || nextBlog) && (
             <section className="mt-24">
               <div className="grid gap-6 md:grid-cols-2">
 
-                {previousArticle && (
+                {previousBlog && (
                   <Link
-                    href={`/blog/${previousArticle.slug}`}
+                    href={`/blog/${previousBlog.slug}`}
                     className="glass-card rounded-2xl border border-white/10 p-6 transition-all hover:border-primary"
                   >
                     <p className="mb-2 text-sm text-white/40">
@@ -374,14 +351,14 @@ export default function ArticleLayout({
                     </p>
 
                     <h3 className="text-xl font-bold text-white">
-                      {previousArticle.title}
+                      {previousBlog.title}
                     </h3>
                   </Link>
                 )}
 
-                {nextArticle && (
+                {nextBlog && (
                   <Link
-                    href={`/blog/${nextArticle.slug}`}
+                    href={`/blog/${nextBlog.slug}`}
                     className="glass-card rounded-2xl border border-white/10 p-6 transition-all hover:border-primary"
                   >
                     <p className="mb-2 text-sm text-white/40">
@@ -389,7 +366,7 @@ export default function ArticleLayout({
                     </p>
 
                     <h3 className="text-xl font-bold text-white">
-                      {nextArticle.title}
+                      {nextBlog.title}
                     </h3>
                   </Link>
                 )}
@@ -400,28 +377,28 @@ export default function ArticleLayout({
 
           {/* Related Articles */}
 
-          <section className="mt-28">
+          {relatedBlogs.length > 0 && (
+            <section className="mt-28">
+              <h2 className="mb-10 font-display text-4xl font-bold text-white">
+                Related Articles
+              </h2>
 
-            <h2 className="mb-10 text-4xl font-display font-bold text-white">
-              Related Articles
-            </h2>
+              <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                {relatedBlogs.map((relatedBlog) => (
+                  <BlogCard
+                    key={relatedBlog._id}
+                    blog={relatedBlog}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
 
-            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-              {relatedPosts.map((post) => (
-                <BlogCard
-                  key={post.slug}
-                  post={post}
-                />
-              ))}
-            </div>
-
-          </section>
-
-                    {/* CTA */}
+          {/* CTA */}
 
           <section className="mt-28">
             <div className="glass-card rounded-3xl p-10 text-center md:p-16">
-              <h2 className="mb-6 text-4xl font-display font-bold text-white">
+              <h2 className="mb-6 font-display text-4xl font-bold text-white">
                 Ready to Build Your Next Digital Product?
               </h2>
 

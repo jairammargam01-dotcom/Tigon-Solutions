@@ -53,4 +53,63 @@ export const contactSchema = z.object({
     ),
 });
 
+export const careerSchema = z.object({
+  title: z
+    .string()
+    .trim()
+    .min(3, "Job title is required."),
+
+  slug: z
+    .string()
+    .trim()
+    .min(3, "Slug is required.")
+    .regex(
+      /^[a-z0-9-]+$/,
+      "Slug can contain lowercase letters, numbers and hyphens only."
+    ),
+
+  department: z
+    .string()
+    .trim()
+    .min(2, "Department is required."),
+
+  employmentType: z
+    .string()
+    .trim()
+    .min(2, "Employment type is required."),
+
+  location: z
+    .string()
+    .trim()
+    .min(2, "Location is required."),
+
+  shortDescription: z
+    .string()
+    .trim()
+    .min(10, "Please enter a short description.")
+    .max(
+      500,
+      "Short description cannot exceed 500 characters."
+    ),
+
+  applyUrl: z
+    .string()
+    .trim()
+    .url("Please enter a valid URL."),
+
+  displayOrder: z.number().default(0),
+
+  featured: z.boolean().default(false),
+
+  published: z.boolean().default(false),
+
+  seoTitle: z.string().trim().default(""),
+
+  seoDescription: z.string().trim().default(""),
+});
+
+export type CareerSchema = z.infer<
+  typeof careerSchema
+>;
+
 export type ContactSchema = z.infer<typeof contactSchema>;

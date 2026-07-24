@@ -3,86 +3,88 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, CalendarDays, Clock } from "lucide-react";
+import {
+  ArrowRight,
+  CalendarDays,
+  Clock,
+} from "lucide-react";
 
-export interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  readTime: string;
-  image: string;
-  featured?: boolean;
-  component: string;
-}
+import type { Blog } from "@/types/blog";
 
 interface BlogCardProps {
-  post: BlogPost;
+  blog: Blog;
 }
 
-export default function BlogCard({ post }: BlogCardProps) {
+export default function BlogCard({
+  blog,
+}: BlogCardProps) {
+  const formattedDate =
+    new Intl.DateTimeFormat("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }).format(new Date(blog.createdAt));
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="glass-card rounded-2xl overflow-hidden group h-full flex flex-col border border-white/5 hover:border-primary/30 transition-all duration-300"
+      className="glass-card group flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 transition-all duration-300 hover:border-primary/30"
     >
-      {/* Image */}
-
       <Link
-        href={`/blog/${post.slug}`}
-        className="overflow-hidden block"
+        href={`/blog/${blog.slug}`}
+        className="block overflow-hidden"
       >
         <Image
-          src={post.image}
-          alt={post.title}
+          src={
+            blog.coverImage && blog.coverImage.trim() !== ""
+              ? blog.coverImage
+              : "/images/blog-placeholder.jpg"
+          }
+          alt={blog.title}
           width={800}
           height={500}
-          className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </Link>
 
-      {/* Content */}
-
-      <div className="p-6 flex flex-col flex-1">
-        <span className="inline-flex w-fit px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
-          {post.category}
+      <div className="flex flex-1 flex-col p-6">
+        <span className="mb-4 inline-flex w-fit rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+          {blog.category}
         </span>
 
-        <Link href={`/blog/${post.slug}`}>
-          <h2 className="text-2xl font-display font-bold text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
-            {post.title}
+        <Link href={`/blog/${blog.slug}`}>
+          <h2 className="mb-3 line-clamp-2 text-2xl font-display font-bold text-white transition-colors group-hover:text-primary">
+            {blog.title}
           </h2>
         </Link>
 
-        <p className="text-white/60 leading-relaxed mb-6 flex-1 line-clamp-3">
-          {post.excerpt}
+        <p className="mb-6 line-clamp-3 flex-1 leading-relaxed text-white/60">
+          {blog.excerpt}
         </p>
 
-        {/* Meta */}
-
-        <div className="flex items-center gap-5 text-sm text-white/40 mb-6">
+        <div className="mb-6 flex items-center gap-5 text-sm text-white/40">
           <div className="flex items-center gap-2">
-            <CalendarDays className="w-4 h-4" />
-            {post.date}
+            <CalendarDays className="h-4 w-4" />
+            {formattedDate}
           </div>
 
           <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4" />
-            {post.readTime}
+            <Clock className="h-4 w-4" />
+            {blog.readTime}
           </div>
         </div>
 
         <Link
-          href={`/blog/${post.slug}`}
-          className="inline-flex items-center text-primary font-semibold group-hover:text-white transition-colors"
+          href={`/blog/${blog.slug}`}
+          className="inline-flex items-center font-semibold text-primary transition-colors group-hover:text-white"
         >
           Read Article
 
-          <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Link>
       </div>
     </motion.article>

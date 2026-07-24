@@ -3,10 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
 
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar";
 import { Providers } from "@/components/Providers";
-import ScrollToHash from "@/components/ScrollToHash";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,7 +51,7 @@ export const metadata: Metadata = {
     "Enterprise Software",
     "Technology Partner",
     "Software Company India",
-    "Soical Media Marketing",
+    "Social Media Marketing",
     "Social Media Management",
   ],
 
@@ -148,16 +145,8 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="flex min-h-screen flex-col bg-background font-sans antialiased text-foreground">
-        <ScrollToHash />
-
-        <Providers>
-          <Navbar />
-
-          <main className="flex-1">{children}</main>
-
-          <Footer />
-        </Providers>
+      <body className="bg-background font-sans antialiased text-foreground">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
